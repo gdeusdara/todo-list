@@ -26,7 +26,7 @@ class New extends React.Component {
 
     }
   }
-  
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
@@ -35,6 +35,7 @@ class New extends React.Component {
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(title) => this.setState({title})}
             value={this.state.title}
+            autoFocus={true}
           />
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}

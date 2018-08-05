@@ -21,12 +21,11 @@ export function removeTodo(id) { // action creator
   };
 }
 
-export function editTodo(title, description, id) { // action creator
+export function editTodo(description, id) { // action creator
   return {
     type: EDIT_TODO,
-    title: title,
     description: description,
-    id: id    
+    id: id
   };
 }
 
