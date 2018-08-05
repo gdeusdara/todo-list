@@ -30,9 +30,10 @@ import {
         });
 
       case EDIT_TODO:
+        console.log(action);
         return state.map((todo) => {
           if (todo.id === action.id) {
-            return {...todo, description: action.description }; 
+            return {...todo, description: action.description };
           } else {
             return todo;
           }
