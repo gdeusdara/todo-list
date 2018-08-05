@@ -1,55 +1,53 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, FlatList, Switch } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { addTodo, editTodo, removeTodo } from '../Actions/todo';
+import { addTodo } from '../Actions/todo';
 
 class New extends React.Component {
 
-  showItem(item) {
-    console.log('item: ');
-    console.log(item);
-    console.log(this.props.dispatch);
-    
-    
-    
-    return(
-      <TouchableHighlight 
-        onPress={() => this.props.navigation.navigate('edit', {todo: item})} 
-        onLongPress={() => this.props.removeTodo(item.id)}
-      >
-        <View>
-          <Text>
-            {item.title} - {item.description}
-          </Text>
-          <Switch value={item.done} />
-        </View>      
-      </TouchableHighlight>
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      description: ''
+    };
   }
 
-  render() {
-    console.log(this.props.todo);
-    
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight 
-          onPress={() => this.props.addNewTodo('teste', 'Descrição')}
-        >
-          <Text>
-              Adicione uma tarefa
-          </Text>
-        </TouchableHighlight>
-        <FlatList
-          data={this.props.todo}
-          keyExtractor={(item) => {
-            return item.id.toString();
-          }}
-          renderItem={(data) => {
-            return this.showItem(data.item);
-          }}
-        />
+  editTodo() {
+    if (this.state.title !== '' && this.state.description !== '') {
+      const todo = {
+        title: this.state.title,
+        description: this.state.description,
+        done: false
+      };
+      this.props.dispatch(addTodo(todo));
+      this.props.navigation.navigate('list');
+    } else {
 
-      </View>
+    }
+  }
+  
+  render() {
+    return (
+      <KeyboardAvoidingView style={styles.container}>
+        <View>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(title) => this.setState({title})}
+            value={this.state.title}
+          />
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(description) => this.setState({description})}
+            value={this.state.description}
+          />
+        </View>
+        <TouchableHighlight onPress={() => this.editTodo()}>
+            <Text>
+                Criar
+            </Text>
+        </TouchableHighlight>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -62,29 +60,4 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    todo: state.todo
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addNewTodo: (title, description) => {
-      const todo = {
-        title: title,
-        description: description,
-        done: false
-      };
-      return dispatch(addTodo(todo));
-    },
-    editTheTodo: (title, description, id) => {
-      return dispatch(editTodo(title, description, id));
-    },
-    removeTodo: (id) => {
-      return dispatch(removeTodo(id));
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(New);
+export default connect()(New);

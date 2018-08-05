@@ -1,29 +1,48 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { editTodo } from '../Actions/todo';
 
 class Edit extends React.Component {
 
-  editTodo() {
-    console.log('\n\nEDIT\n');
-    
-    console.log(this.props.navigation.state.params);
-    console.log(this.props.navigation.state.params.todo.id);
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.navigation.state.params.todo.title,
+      description: this.props.navigation.state.params.todo.description
+    };
+  }
 
-    this.props.dispatch(editTodo('novo todo', 'nova descricao', this.props.navigation.state.params.todo.id));
-    this.props.navigation.navigate('new');
+  editTodo() {
+    if (this.state.title !== '' && this.state.description !== '') {
+      this.props.dispatch(editTodo(this.state.title, this.state.description, this.props.navigation.state.params.todo.id));
+      this.props.navigation.navigate('list');
+    } else {
+
+    }
   }
   
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
+        <View>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(title) => this.setState({title})}
+            value={this.state.title}
+          />
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(description) => this.setState({description})}
+            value={this.state.description}
+          />
+        </View>
         <TouchableHighlight onPress={() => this.editTodo()}>
             <Text>
                 Edit Page
             </Text>
         </TouchableHighlight>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

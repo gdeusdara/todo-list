@@ -5,9 +5,6 @@ import ViewTodo from '../Screens/ViewTodo';
 import { createStackNavigator } from 'react-navigation'
 
 const routes = {
-    new: {
-        screen: New
-    },
     list: {
         screen: List,
         navigationOptions: {
@@ -16,6 +13,9 @@ const routes = {
     },
     view: {
         screen: ViewTodo
+    },
+    new: {
+        screen: New
     },
     edit: {
         screen: Edit
