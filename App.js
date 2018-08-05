@@ -1,6 +1,6 @@
-import React from '../../.cache/typescript/2.9/node_modules/@types/react';
-import { Provider } from '../../.cache/typescript/2.9/node_modules/@types/react-redux';
-import Navigator from './app/Navigators/Navigator';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Navigator from './app/Navigator/Navigator';
 import store from './app/Reducers/store';
 
 store.subscribe(() => {
