@@ -1,5 +1,5 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React from '../../.cache/typescript/2.9/node_modules/@types/react';
+import { Provider } from '../../.cache/typescript/2.9/node_modules/@types/react-redux';
 import Navigator from './app/Navigators/Navigator';
 import store from './app/Reducers/store';
 

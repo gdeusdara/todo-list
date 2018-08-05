@@ -30,8 +30,6 @@ export function editTodo(title, description, id) { // action creator
   };
 }
 
-
-
 export function toggleTodo(id) { // action creator
   return {
     type: TOGGLE_TODO,
