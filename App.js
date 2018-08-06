@@ -5,6 +5,7 @@ import store from './app/Reducers/store';
 
 store.subscribe(() => {
   console.log(store.getState());
+  console.log('\n\n\n');
 });
 
 class App extends React.Component {

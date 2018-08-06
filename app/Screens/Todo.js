@@ -58,7 +58,6 @@ class Todo extends React.Component {
   }
 
   edit(item) {
-    console.log('ID DO ITEM EDITAvel = ' + item.id);
     this.setState({edit: true, description: item.description, todoId: item.id, modalVisible: true});
   }
 
@@ -100,8 +99,8 @@ class Todo extends React.Component {
                 this.createTodo();
             }}>
               <View style={{borderWidth: 1, borderColor: 'green', borderRadius: 20, width: 130, height: 30, alignItems: 'center', justifyContent: 'center'}} >
-                {this.state.edit ? 
-                  <Text style={{color: 'green'}}>Editar</Text> 
+                {this.state.edit ?
+                  <Text style={{color: 'green'}}>Editar</Text>
                 :
                   <Text style={{color: 'green'}}>Adicionar tafefa</Text>
                 }
@@ -114,7 +113,6 @@ class Todo extends React.Component {
   }
 
   list() {
-    console.log(this.props.todo.length);
       return (
         <View style={{flex: 8}} >
           <FlatList
@@ -145,7 +143,6 @@ class Todo extends React.Component {
   }
 
   render() {
-    console.log(this.state.edit);
     return (
       <View style={styles.container}>
         {this.modal()}
