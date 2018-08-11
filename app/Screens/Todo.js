@@ -19,31 +19,31 @@ class Todo extends React.Component {
       'Escolha',
       'Deseja editar ou excluir?',
       [
-        {text: 'Cancelar', onPress: () => {}, style: 'cancel'},
-        {text: 'Editar', onPress: () => this.edit(item)},
-        {text: 'Excluir', onPress: () => this.props.removeTodo(item.id)},
+        { text: 'Cancelar', onPress: () => { }, style: 'cancel' },
+        { text: 'Editar', onPress: () => this.edit(item) },
+        { text: 'Excluir', onPress: () => this.props.removeTodo(item.id) },
       ],
       { cancelable: false }
     )
   }
 
   showItem(item) {
-    return(
+    return (
       <TouchableHighlight
         onPress={() => this.options(item)}
       >
-        <View style={{alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 50}}>
-        <View style={{flex: 6, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 2}}>
-          <Text>
-            {item.description}
-          </Text>
-        </View>
-          <View style={{flex: 2, alignItems: 'flex-end', justifyContent: 'center', marginRight: 2, flexDirection: 'row'}}>
+        <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 50 }}>
+          <View style={{ flex: 6, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 2 }}>
+            <Text>
+              {item.description}
+            </Text>
+          </View>
+          <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center', marginRight: 2, flexDirection: 'row' }}>
             {item.done ?
-              <Text style={{color: 'green'}}>
+              <Text style={{ color: 'green' }}>
                 Feito
               </Text>
-            :
+              :
               <View />
             }
             <Switch
@@ -58,24 +58,24 @@ class Todo extends React.Component {
   }
 
   edit(item) {
-    this.setState({edit: true, description: item.description, todoId: item.id, modalVisible: true});
+    this.setState({ edit: true, description: item.description, todoId: item.id, modalVisible: true });
   }
 
   changeList() {
     if (this.state.description !== '') {
       if (this.state.edit) {
         this.props.editTodo(this.state.description, this.state.todoId);
-        this.setState({edit: false});
+        this.setState({ edit: false });
       } else {
         this.props.newTodo(this.state.description);
       }
-      this.setState({description: ''});
+      this.setState({ description: '' });
       this.setModalVisible(!this.state.modalVisible);
     }
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({ modalVisible: visible });
   }
 
   modal() {
@@ -88,10 +88,11 @@ class Todo extends React.Component {
         onRequestClose={() => this.setModalVisible(false)}
       >
         <View style={styles.modal}>
+          <View style={styles.modalUp} >
             <Text>Descrição</Text>
             <TextInput
-              style={{height: 40, borderColor: '#000', borderWidth: 1, borderRadius: 5, marginBottom: 10, width: '80%'}}
-              onChangeText={(description) => this.setState({description})}
+              style={{ height: 40, borderColor: '#000', borderWidth: 1, borderRadius: 5, marginBottom: 10, width: '80%' }}
+              onChangeText={(description) => this.setState({ description })}
               value={this.state.description}
               autoFocus={true}
             />
@@ -99,42 +100,45 @@ class Todo extends React.Component {
             <TouchableHighlight
               onPress={() => {
                 this.changeList();
-            }}>
+              }}>
               <View style={styles.button} >
                 {this.state.edit ?
-                  <Text style={{color: 'green'}}>Editar</Text>
-                :
-                  <Text style={{color: 'green'}}>Adicionar tafefa</Text>
+                  <Text style={{ color: 'green' }}>Editar</Text>
+                  :
+                  <Text style={{ color: 'green' }}>Adicionar tafefa</Text>
                 }
               </View>
             </TouchableHighlight>
+          </View>
 
+          <View style={styles.modalDown} >
             <TouchableHighlight
-              onPress={() => this.setState({description: '', modalVisible: false})}
+              onPress={() => this.setState({ description: '', modalVisible: false })}
             >
-              <Text style={{color: 'red'}}>
+              <Text style={{ color: 'red' }}>
                 Cancelar
               </Text>
             </TouchableHighlight>
-       </View>
-     </Modal>
+          </View>
+        </View>
+      </Modal>
     );
   }
 
   list() {
-      return (
-        <View style={{flex: 8}} >
-          <FlatList
-            data={this.props.todo}
-            keyExtractor={(item) => {
-              return item.id.toString();
-            }}
-            renderItem={(data) => {
-              return this.showItem(data.item);
-            }}
-          />
-        </View>
-      );
+    return (
+      <View style={{ flex: 8 }} >
+        <FlatList
+          data={this.props.todo}
+          keyExtractor={(item) => {
+            return item.id.toString();
+          }}
+          renderItem={(data) => {
+            return this.showItem(data.item);
+          }}
+        />
+      </View>
+    );
   }
 
   button() {
@@ -142,8 +146,8 @@ class Todo extends React.Component {
       <View style={styles.bottom}>
         <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)}>
           <View style={styles.button} >
-            <Text style={{color: 'green'}}>
-                adicionar tarefa
+            <Text style={{ color: 'green' }}>
+              adicionar tarefa
             </Text>
           </View>
         </TouchableHighlight>
@@ -160,7 +164,8 @@ class Todo extends React.Component {
       </View>
     );
   }
-}
+} //end of Class
+
 
 const styles = {
   container: {
@@ -179,20 +184,30 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    elevation: 1,
+    shadowRadius: 2
   },
   modal: {
     flex: 1,
     margin: 22,
     borderWidth: 1,
     borderColor: 'green',
-    borderRadius: 10,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 5,
     backgroundColor: '#fff',
+    alignSelf: 'center',
     width: '70%',
     height: '50%'
+  },
+  modalUp: {
+    flex: 8,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modalDown: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }
 
