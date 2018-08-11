@@ -1,10 +1,4 @@
 {
-  "expo": {
-    "name": "Todo",
-    "version": "0.1",
-    "sdkVersion": "27.0.0",
-    "android": {
-      "package": "com.gdeusdara.todo"
-    }
-  }
+  "name": "todo",
+  "displayName": "todo"
 }
