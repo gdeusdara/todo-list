@@ -11,6 +11,12 @@ import {
     switch(action.type) {
 
       case ADD_TODO:
+        let id = 1
+        state.map((todo) => {
+          if (todo.id >= id)
+            id = todo.id + 1;
+        });
+        action.todo.id = id;
         const todo = action.todo;
         return [...state, todo];
 

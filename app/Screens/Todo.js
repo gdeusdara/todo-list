@@ -34,20 +34,20 @@ class Todo extends React.Component {
       >
         <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 50 }}>
           <View style={{ flex: 6, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 2 }}>
-            <Text>
+            <Text style={{marginLeft: 3, color: '#212121'}} >
               {item.description}
             </Text>
           </View>
           <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center', marginRight: 2, flexDirection: 'row' }}>
             {item.done ?
-              <Text style={{ color: 'green' }}>
+              <Text style={{ color: '#1976D2' }}>
                 Feito
               </Text>
               :
               <View />
             }
             <Switch
-              style={{}}
+              style={{color: '#2196F3'}}
               onValueChange={() => this.props.toggleTodo(item.id)}
               value={item.done}
             />
@@ -91,7 +91,7 @@ class Todo extends React.Component {
           <View style={styles.modalUp} >
             <Text>Descrição</Text>
             <TextInput
-              style={{ height: 40, borderColor: '#000', borderWidth: 1, borderRadius: 5, marginBottom: 10, width: '80%' }}
+              style={{ height: 40, borderColor: '#00BCD4', borderWidth: 1, borderRadius: 5, marginBottom: 10, width: '90%', height: '40%' }}
               onChangeText={(description) => this.setState({ description })}
               value={this.state.description}
               autoFocus={true}
@@ -103,9 +103,9 @@ class Todo extends React.Component {
               }}>
               <View style={styles.button} >
                 {this.state.edit ?
-                  <Text style={{ color: 'green' }}>Editar</Text>
+                  <Text style={{ color: '#1976D2' }}>Salvar</Text>
                   :
-                  <Text style={{ color: 'green' }}>Adicionar tafefa</Text>
+                  <Text style={{ color: '#1976D2' }}>Adicionar tafefa</Text>
                 }
               </View>
             </TouchableHighlight>
@@ -115,7 +115,7 @@ class Todo extends React.Component {
             <TouchableHighlight
               onPress={() => this.setState({ description: '', modalVisible: false })}
             >
-              <Text style={{ color: 'red' }}>
+              <Text style={{ color: '#757575' }}>
                 Cancelar
               </Text>
             </TouchableHighlight>
@@ -146,7 +146,7 @@ class Todo extends React.Component {
       <View style={styles.bottom}>
         <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)}>
           <View style={styles.button} >
-            <Text style={{ color: 'green' }}>
+            <Text style={{ color: '#1976D2' }}>
               adicionar tarefa
             </Text>
           </View>
@@ -173,7 +173,7 @@ const styles = {
   },
   button: {
     borderWidth: 1,
-    borderColor: 'green',
+    borderColor: '#1976D2',
     borderRadius: 20,
     width: 130,
     height: 30,
@@ -191,13 +191,12 @@ const styles = {
   modal: {
     flex: 1,
     margin: 22,
-    borderWidth: 1,
-    borderColor: 'green',
     borderRadius: 5,
     backgroundColor: '#fff',
     alignSelf: 'center',
     width: '70%',
-    height: '50%'
+    height: '50%',
+    elevation: 1
   },
   modalUp: {
     flex: 8,

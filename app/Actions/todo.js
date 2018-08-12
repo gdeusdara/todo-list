@@ -3,11 +3,8 @@ export const ADD_TODO = 'ADD_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 
-let id = 0;
 
 export function addTodo(todo) {
-  id++;
-  todo.id = id;
   return {
     type: ADD_TODO,
     todo: todo
