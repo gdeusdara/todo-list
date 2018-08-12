@@ -5,7 +5,15 @@ const routes = {
     list: {
         screen: Todo,
         navigationOptions: {
-            title: 'Lista de Tarefas'
+            title: 'Lista de Tarefas',
+            headerStyle: {
+                backgroundColor: '#2196F3',
+            },
+            headerTitleStyle: {
+                color: '#fff',
+                alignSelf: 'center',
+                marginLeft: '30%'
+            }
         }
     }
 }

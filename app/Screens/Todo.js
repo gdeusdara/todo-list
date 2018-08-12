@@ -32,22 +32,22 @@ class Todo extends React.Component {
       <TouchableHighlight
         onPress={() => this.options(item)}
       >
-        <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 50 }}>
-          <View style={{ flex: 6, alignItems: 'flex-start', justifyContent: 'center', marginLeft: 2 }}>
+        <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 60 }}>
+          <View style={{ flex: 6, alignItems: 'flex-start', justifyContent: 'center', marginLeft: '3%' }}>
             <Text style={{marginLeft: 3, color: '#212121'}} >
               {item.description}
             </Text>
           </View>
-          <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center', marginRight: 2, flexDirection: 'row' }}>
+          <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center', flexDirection: 'row' }}>
+            
             {item.done ?
-              <Text style={{ color: '#1976D2' }}>
+              <Text style={{ color: '#1976D2', alignSelf: 'center' }}>
                 Feito
               </Text>
               :
-              <View />
+              <View style={{flex: 0.7}} />
             }
             <Switch
-              style={{color: '#2196F3'}}
               onValueChange={() => this.props.toggleTodo(item.id)}
               value={item.done}
             />
