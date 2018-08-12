@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableHighlight, Switch, TextInput, Modal, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { removeTodo, toggleTodo, addTodo, editTodo } from '../Actions/todo';
+import Item from '../Components/Item';
 
 class Todo extends React.Component {
 
@@ -25,36 +26,6 @@ class Todo extends React.Component {
       ],
       { cancelable: false }
     )
-  }
-
-  showItem(item) {
-    return (
-      <TouchableHighlight
-        onPress={() => this.options(item)}
-      >
-        <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 60 }}>
-          <View style={{ flex: 6, alignItems: 'flex-start', justifyContent: 'center', marginLeft: '3%' }}>
-            <Text style={{marginLeft: 3, color: '#212121'}} >
-              {item.description}
-            </Text>
-          </View>
-          <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center', flexDirection: 'row' }}>
-            
-            {item.done ?
-              <Text style={{ color: '#1976D2', alignSelf: 'center' }}>
-                Feito
-              </Text>
-              :
-              <View style={{flex: 0.7}} />
-            }
-            <Switch
-              onValueChange={() => this.props.toggleTodo(item.id)}
-              value={item.done}
-            />
-          </View>
-        </View>
-      </TouchableHighlight>
-    );
   }
 
   edit(item) {
@@ -134,7 +105,13 @@ class Todo extends React.Component {
             return item.id.toString();
           }}
           renderItem={(data) => {
-            return this.showItem(data.item);
+            return (
+              <Item
+                item={data.item}
+                onPress={() => this.options(data.item)}
+                switch={() => this.props.toggleTodo(data.item.id)}
+              />
+            );
           }}
         />
       </View>
