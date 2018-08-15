@@ -8,8 +8,10 @@
     "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
   },
   "dependencies": {
+    "native-base": "^2.7.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.11.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableHighlight, Switch, TextInput, Modal, Ale
 import { connect } from 'react-redux';
 import { removeTodo, toggleTodo, addTodo, editTodo } from '../Actions/todo';
 import Item from '../Components/Item';
+import { Fab, Icon } from 'native-base';
 
 class Todo extends React.Component {
 
@@ -120,15 +121,13 @@ class Todo extends React.Component {
 
   button() {
     return (
-      <View style={styles.bottom}>
-        <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)}>
-          <View style={styles.button} >
-            <Text style={{ color: '#1976D2' }}>
-              adicionar tarefa
-            </Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <Fab
+        containerStyle={{}}
+        style={{ backgroundColor: '#5067FF' }}
+        position="bottomRight"
+        onPress={() => this.setModalVisible(true)}>
+        <Icon name='add' />
+      </Fab>
     );
   }
 
