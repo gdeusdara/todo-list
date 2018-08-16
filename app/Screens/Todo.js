@@ -16,19 +16,6 @@ class Todo extends React.Component {
     };
   }
 
-  options(item) {
-    Alert.alert(
-      'Escolha',
-      'Deseja editar ou excluir?',
-      [
-        { text: 'Cancelar', onPress: () => { }, style: 'cancel' },
-        { text: 'Editar', onPress: () => this.edit(item) },
-        { text: 'Excluir', onPress: () => this.props.removeTodo(item.id) },
-      ],
-      { cancelable: false }
-    )
-  }
-
   edit(item) {
     this.setState({ edit: true, description: item.description, todoId: item.id, modalVisible: true });
   }
@@ -109,8 +96,9 @@ class Todo extends React.Component {
             return (
               <Item
                 item={data.item}
-                onPress={() => this.options(data.item)}
-                switch={() => this.props.toggleTodo(data.item.id)}
+                onPress={() => this.props.toggleTodo(data.item.id)}
+                edit={() => this.edit(data.item)}
+                erase={() => this.props.removeTodo(data.item.id)}
               />
             );
           }}
@@ -123,7 +111,7 @@ class Todo extends React.Component {
     return (
       <Fab
         containerStyle={{}}
-        style={{ backgroundColor: '#5067FF' }}
+        style={{ backgroundColor: '#1976D2' }}
         position="bottomRight"
         onPress={() => this.setModalVisible(true)}>
         <Icon name='add' />

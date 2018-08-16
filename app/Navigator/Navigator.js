@@ -12,7 +12,8 @@ const routes = {
             headerTitleStyle: {
                 color: '#fff',
                 alignSelf: 'center',
-                marginLeft: '30%'
+                marginLeft: '30%',
+                fontFamily: 'sans-serif-light'
             }
         }
     }
